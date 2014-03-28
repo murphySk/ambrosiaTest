@@ -36,6 +36,7 @@
         <property name="url" value="jdbc:hsqldb:mem:testDB"/>
         <property name="username" value="sa"/>
         <property name="password" value=""/>
+
     </bean>
 
     <!-- Hibernate session factory -->

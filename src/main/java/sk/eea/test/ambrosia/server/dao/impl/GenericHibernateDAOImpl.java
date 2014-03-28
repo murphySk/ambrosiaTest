@@ -75,7 +75,7 @@ public abstract class GenericHibernateDAOImpl<T, ID extends Serializable> extend
 	}
 
 	public void makeTransient(T entity) {
-		getHibernateTemplate().delete(entity);
+         getHibernateTemplate().delete(entity);
 	}
 
 	/**
