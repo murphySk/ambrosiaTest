@@ -70,12 +70,13 @@ public abstract class GenericHibernateDAOImpl<T, ID extends Serializable> extend
 
 	@SuppressWarnings("unchecked")
 	public T makePersistent(T entity) {
-		getHibernateTemplate().saveOrUpdate(entity);
-		return entity;
-	}
+        getHibernateTemplate().saveOrUpdate(entity);
+        return entity;
+    }
 
 	public void makeTransient(T entity) {
-		getHibernateTemplate().delete(entity);
+
+        getHibernateTemplate().delete(entity);
 	}
 
 	/**

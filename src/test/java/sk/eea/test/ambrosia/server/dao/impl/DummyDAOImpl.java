@@ -10,5 +10,8 @@ import sk.eea.test.ambrosia.server.entity.DummyEntity;
  */
 @Repository
 public class DummyDAOImpl extends GenericHibernateDAOImpl<DummyEntity, Long> implements DummyDAO {
-    
+    public void makeTransient(DummyEntity entity) {
+        entity.setDeleted(true);
+        getHibernateTemplate().delete(entity);
+    }
 }
