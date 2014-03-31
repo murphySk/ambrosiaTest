@@ -1,5 +1,6 @@
 package sk.eea.test.ambrosia.services.impl;
 
+import sk.eea.test.ambrosia.server.entity.EuropeanaObjectEntity;
 import sk.eea.test.ambrosia.services.EuropeanaDataFetchService;
 
 import java.util.List;
@@ -9,12 +10,12 @@ import java.util.List;
  */
 public class EuropeanaDataFetchServiceImpl implements EuropeanaDataFetchService {
     @Override
-    public List<EuropeanaObject> searchObjects(String key) {
+    public List<EuropeanaObjectEntity> searchObjects(String key) {
         return null;
     }
 
     @Override
-    public EuropeanaObject getSimpleObject(String objectId) {
+    public EuropeanaObjectEntity getSimpleObject(String objectId) {
         return null;
     }
 }

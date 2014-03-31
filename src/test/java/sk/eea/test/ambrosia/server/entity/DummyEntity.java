@@ -12,13 +12,33 @@ public class DummyEntity {
     
 	@Id
 	@GeneratedValue(strategy= GenerationType.SEQUENCE)
-	private Long id;
+	private Long userId;
 
-	public Long getId() {
-		return id;
-	}
+    private String name;
 
-    public void setId(Long id) {
-        this.id = id;
+     private String password;
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

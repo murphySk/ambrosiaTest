@@ -1,6 +1,7 @@
 package sk.eea.test.ambrosia.services;
 
 import org.springframework.stereotype.Service;
+import sk.eea.test.ambrosia.server.entity.EuropeanaObjectEntity;
 
 import java.util.List;
 
@@ -10,7 +11,7 @@ import java.util.List;
 @Service
 public interface EuropeanaDataFetchService {
 
-    public List<EuropeanaObject> searchObjects(String key);
+    public List<EuropeanaObjectEntity> searchObjects(String key);
 
-    public EuropeanaObject getSimpleObject(String objectId);
+    public EuropeanaObjectEntity getSimpleObject(String objectId);
 }

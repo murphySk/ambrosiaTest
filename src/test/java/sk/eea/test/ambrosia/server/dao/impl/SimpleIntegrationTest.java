@@ -30,4 +30,34 @@ public class SimpleIntegrationTest extends ApplicationContextAwareTest {
         int countAfter = dummyDAO.findAll().size();
         assertEquals(countBefore + 1, countAfter);
     }
+
+    @Test
+    public void testUpdate(){
+        DummyEntity dummyEntity = new DummyEntity();
+        dummyEntity.setUserId((long)1);
+        dummyDAO.makePersistent(dummyEntity);
+        int countBefore = dummyDAO.findAll().size();
+
+        DummyEntity dummyEntity2 = dummyDAO.findById((long)1, false);
+        dummyEntity2.setUserId((long)1);
+        dummyDAO.makePersistent(dummyEntity2);
+        int countAfter = dummyDAO.findAll().size();
+        assertEquals(countBefore , countAfter);
+
+    }
+    @Test
+    public void testStringUpdate(){
+        DummyEntity dummyEntity = new DummyEntity();
+        DummyEntity dummyEntity2 = new DummyEntity();
+        dummyEntity.setName("Silvia");
+        dummyEntity.setPassword("1234");
+
+        dummyEntity = dummyDAO.makePersistent(dummyEntity);
+        int countBefore = dummyDAO.findAll().size();
+        dummyEntity2 = dummyDAO.findById(dummyEntity.getUserId(),true);
+        dummyEntity2.setName("Maros");
+        dummyDAO.makePersistent(dummyEntity2);
+        int countAfter = dummyDAO.findAll().size();
+        assertEquals(countBefore , countAfter);
+    }
 }
