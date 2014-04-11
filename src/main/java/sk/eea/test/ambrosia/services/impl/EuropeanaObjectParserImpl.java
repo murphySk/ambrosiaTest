@@ -26,8 +26,10 @@ public class EuropeanaObjectParserImpl implements EuropeanaObjectParser {
             JSONObject jsonobj = jsonArray.getJSONObject(i);
              if(jsonobj.containsKey("id"))
                  e.setObjectId(jsonobj.getString("id"));
-             if(jsonobj.containsKey("title"))
-                 e.setTitle(jsonobj.getString("title"));
+             if(jsonobj.containsKey("title")) {
+                 JSONArray temp =jsonobj.getJSONArray("title") ;
+                 e.setTitle(temp.get(0).toString());
+             }
              if(jsonobj.containsKey("type"))
                  e.setDescription(jsonobj.getString("type"));
              list.add(e);

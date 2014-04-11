@@ -10,8 +10,5 @@
                 <input type="text" name="term" size="20"><input type="submit" value="search">
              </form>
         </div>
-
-
-
     </body>
 </html>
