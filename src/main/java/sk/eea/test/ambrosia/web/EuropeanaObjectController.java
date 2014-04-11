@@ -16,8 +16,6 @@ public class EuropeanaObjectController {
 //    private EuropeanaDataFetchService europeanaDataFetchService;
 
     @RequestMapping(value = "/allobjects", method = RequestMethod.GET)
-    public String showAllObjects() {
-        return "allobjects";
-    }
+    public String showAllObjects() { return "allobjects"; }
 
 }
