@@ -19,4 +19,7 @@ public class HelloWorldController {
         return "hello";
     }
 
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public String handleRequestAllObjects() { return "allobjects"; }
+
 }

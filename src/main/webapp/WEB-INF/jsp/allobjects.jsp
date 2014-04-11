@@ -5,5 +5,10 @@
         <div id="content">
             <fmt:message key="index.property_message"/>
         </div>
+        <%
+            String term = request.getParameter("term");
+            session.setAttribute("theTerm", term);
+        %>
+        Searched term was <%= request.getParameter("term")%>
     </body>
 </html>

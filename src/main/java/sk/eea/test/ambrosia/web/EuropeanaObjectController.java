@@ -12,12 +12,10 @@ import sk.eea.test.ambrosia.services.EuropeanaDataFetchService;
 @Controller
 public class EuropeanaObjectController {
 
-    @Autowired
-    private EuropeanaDataFetchService europeanaDataFetchService;
+//    @Autowired
+//    private EuropeanaDataFetchService europeanaDataFetchService;
 
     @RequestMapping(value = "/allobjects", method = RequestMethod.GET)
-    public String showAllObjects() {
-        return "allobjects";
-    }
+    public String showAllObjects() { return "allobjects"; }
 
 }

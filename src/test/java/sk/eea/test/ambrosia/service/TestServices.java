@@ -5,6 +5,7 @@ import org.junit.Test;
 import sk.eea.test.ambrosia.server.entity.EuropeanaObjectEntity;
 import sk.eea.test.ambrosia.services.EuropeanaObjectParser;
 import sk.eea.test.ambrosia.services.impl.EuropeanaObjectParserImpl;
+import sk.eea.test.ambrosia.services.impl.HttpConnection;
 
 import javax.annotation.Resource;
 import javax.annotation.Resources;
@@ -46,7 +47,18 @@ public class TestServices extends ApplicationContextAwareTest{
 
     @Test
     public void searchTest(){
+        EuropeanaObjectParserImpl dummyPars = new EuropeanaObjectParserImpl();
+        HttpConnection con = new HttpConnection();
 
+        try{
+            List<EuropeanaObjectEntity> list = dummyPars.parseObjects(con.sendGet("Spissknok"));
+            String[] ids = {"/2022608/RF_HJB0602","/2022608/NF_NFSA_1294","/2022608/artifactView_do_idOwner_NF_idIdentifier_NFL_23921"};
+            for(int i = 0; i < list.size(); i++) {
+                assertEquals(list.get(i).getObjectId(), ids[i]);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
