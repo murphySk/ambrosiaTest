@@ -133,6 +133,13 @@
             <classifier>jdk15</classifier>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>LATEST</version>
+            <type>jar</type>
+        </dependency>
+
     </dependencies>
 
     <build>
