@@ -18,4 +18,7 @@ public class EuropeanaObjectController {
     @RequestMapping(value = "/allobjects", method = RequestMethod.GET)
     public String showAllObjects() { return "allobjects"; }
 
+    @RequestMapping(value = "/detailedObject", method = RequestMethod.GET)
+    public String handleRequestAllObjects() { return "detailedObject"; }
+
 }
