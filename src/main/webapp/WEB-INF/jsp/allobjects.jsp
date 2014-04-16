@@ -20,7 +20,7 @@
                 for(int i = 0; i < list.size(); i++) {
                     %>
                     <h3> <%=list.get(i).getTitle()%> </h3>
-                    <a href = "">Google</a>
+                    <a href = "/detailedObject">Google</a>
                     <%=list.get(i).getDescription()%>
                     <br>
                 <% }
