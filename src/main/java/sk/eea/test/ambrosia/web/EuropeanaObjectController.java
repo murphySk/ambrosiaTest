@@ -1,13 +1,8 @@
 package sk.eea.test.ambrosia.web;
 
-import org.omg.CORBA.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-<<<<<<< HEAD
-import org.springframework.stereotype.Service;
-=======
 import org.springframework.ui.ModelMap;
->>>>>>> ba43cec8ce840d8a138a9aaf603aecd8f868f0c5
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import sk.eea.test.ambrosia.server.entity.EuropeanaObjectEntity;
