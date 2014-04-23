@@ -143,7 +143,7 @@
     </dependencies>
 
     <build>
-        <finalName>ambrosiaTest-1.0.0-SNAPSHOT.${project.packaging}</finalName>
+        <finalName>ambrosiaTest</finalName>
 
         <resources>
             <resource>
@@ -193,7 +193,34 @@
                 </configuration>
             </plugin>
 
-
+            <plugin>
+                <groupId>org.jboss.as.plugins</groupId>
+                <artifactId>jboss-as-maven-plugin</artifactId>
+                <version>7.1.1.Final</version>
+                <configuration>
+                    <name>${project.build.finalName}.${project.packaging}</name>
+                    <username>admin</username>
+                    <password>maven</password>
+                    <filename>${project.build.finalName}.${project.packaging}</filename>
+                    <force>true</force>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>packaging</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>deploy</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>cleaning</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>undeploy</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
