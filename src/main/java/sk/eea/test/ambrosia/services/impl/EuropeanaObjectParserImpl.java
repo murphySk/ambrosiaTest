@@ -66,6 +66,10 @@ public class EuropeanaObjectParserImpl implements EuropeanaObjectParser {
                  temp =  jsonobj.getJSONArray("language");
                  e.setLanguage(temp.get(0).toString());
              }
+             if(jsonobj.containsKey("edmPreview")) {
+                 temp =  jsonobj.getJSONArray("edmPreview");
+                 e.setEdmPreview(temp.get(0).toString());
+             }
 
              list.add(e);
          }

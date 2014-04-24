@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import sk.eea.test.ambrosia.server.entity.EuropeanaObjectEntity;
 import sk.eea.test.ambrosia.services.EuropeanaDataFetchService;
+import sk.eea.test.ambrosia.services.impl.EuropeanaDataFetchServiceImpl;
 import sk.eea.test.ambrosia.services.impl.EuropeanaObjectParserImpl;
 import sk.eea.test.ambrosia.services.impl.HttpConnection;
 
@@ -22,13 +23,13 @@ public class EuropeanaObjectController {
     @Autowired
     private EuropeanaDataFetchService europeanaDataFetchService;
 
-    @RequestMapping(value = "/allobjects", method = RequestMethod.GET)
+    @RequestMapping(value = "/allobjects", method = RequestMethod.POST)
     public String showAllObjects(ModelMap model, HttpServletRequest request) {
         EuropeanaObjectParserImpl dummyPars = new EuropeanaObjectParserImpl();
-        HttpConnection con = new HttpConnection();
+        EuropeanaDataFetchServiceImpl con = new EuropeanaDataFetchServiceImpl();
         String term = request.getParameter("term");
         try {
-            List<EuropeanaObjectEntity> list = dummyPars.parseObjects(con.sendGet(term));
+            List<EuropeanaObjectEntity> list = dummyPars.parseObjects(con.sendHttpGetRequest(term));
             model.addAttribute("list", list);
         } catch (Exception e) {
             e.printStackTrace();
@@ -37,7 +38,7 @@ public class EuropeanaObjectController {
         return "allobjects";
     }
 
-    @RequestMapping(value = "/detailedObject", method = RequestMethod.GET)
+    @RequestMapping(value = "/allobjects", method = RequestMethod.GET)
     public String handleRequestAllObjects() { return "detailedObject"; }
 
 }

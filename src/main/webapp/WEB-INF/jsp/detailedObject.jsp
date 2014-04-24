@@ -5,6 +5,7 @@
     <body>
         <div id="content">
             <fmt:message key="index.property_message"/>
+
         </div>
 
     </body>

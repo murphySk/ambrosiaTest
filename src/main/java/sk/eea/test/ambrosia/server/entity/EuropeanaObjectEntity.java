@@ -27,11 +27,7 @@ public class EuropeanaObjectEntity {
 
     private String language;
 
-
-
-
-
-
+    private String edmPreview;
 
     public String getObjectId() {
         return objectId;
@@ -119,5 +115,13 @@ public class EuropeanaObjectEntity {
 
     public void setLanguage(String language) {
         this.language = language;
+    }
+
+    public String getEdmPreview() {
+        return edmPreview;
+    }
+
+    public void setEdmPreview(String edmPreview) {
+        this.edmPreview = edmPreview;
     }
 }

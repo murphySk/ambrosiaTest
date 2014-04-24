@@ -13,7 +13,7 @@
         </div>
         <c:forEach var="EuropeanaObjectEntity" items="${list}">
             <h2><c:out value="${EuropeanaObjectEntity.getTitle()}"/></h2>
-            <c:out value="${EuropeanaObjectEntity.getDescription()}"/>
+            <img src="<c:out value="${EuropeanaObjectEntity.getEdmPreview()}"/>">
             <br>
         </c:forEach>
         Searched term was <%= request.getParameter("term")%>
