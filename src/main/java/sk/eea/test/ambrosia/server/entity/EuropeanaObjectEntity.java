@@ -121,6 +121,8 @@ public class EuropeanaObjectEntity {
         return edmPreview;
     }
 
+   // public String getId() {return id;}
+
     public void setEdmPreview(String edmPreview) {
         this.edmPreview = edmPreview;
     }

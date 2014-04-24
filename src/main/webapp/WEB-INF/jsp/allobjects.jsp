@@ -11,9 +11,12 @@
         <div id="content">
             <fmt:message key="index.property_message"/>
         </div>
+        <h2>bu</h2>
         <c:forEach var="EuropeanaObjectEntity" items="${list}">
-            <h2><c:out value="${EuropeanaObjectEntity.getTitle()}"/></h2>
+           <a href="/ambrosia/detail/?id=<c:out value="${EuropeanaObjectEntity.getObjectId()}"/>"> <h2><c:out value="${EuropeanaObjectEntity.getTitle()}"/></h2></a>
             <img src="<c:out value="${EuropeanaObjectEntity.getEdmPreview()}"/>">
+
+
             <br>
         </c:forEach>
         Searched term was <%= request.getParameter("term")%>
