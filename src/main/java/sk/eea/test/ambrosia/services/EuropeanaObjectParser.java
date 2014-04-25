@@ -1,5 +1,6 @@
 package sk.eea.test.ambrosia.services;
 
+import sk.eea.test.ambrosia.server.entity.DetailedObjectEntity;
 import sk.eea.test.ambrosia.server.entity.EuropeanaObjectEntity;
 
 import java.util.List;
@@ -10,5 +11,5 @@ import java.util.List;
 public interface EuropeanaObjectParser {
     public List<EuropeanaObjectEntity> parseObjects(String jsonInput); // input could be also JSONOArray
 
-    public EuropeanaObjectEntity parseSimpleRecord(String jsonInput); // input could be also JSONObject
+    public DetailedObjectEntity parseSimpleRecord(String jsonInput); // input could be also JSONObject
 }

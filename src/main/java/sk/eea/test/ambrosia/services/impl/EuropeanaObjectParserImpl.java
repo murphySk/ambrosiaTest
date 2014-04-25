@@ -1,5 +1,7 @@
 package sk.eea.test.ambrosia.services.impl;
+import org.apache.commons.lang.ArrayUtils;
 import org.springframework.stereotype.Service;
+import sk.eea.test.ambrosia.server.entity.DetailedObjectEntity;
 import sk.eea.test.ambrosia.server.entity.EuropeanaObjectEntity;
 import sk.eea.test.ambrosia.services.EuropeanaObjectParser;
 import net.sf.json.JSONArray;
@@ -78,16 +80,114 @@ public class EuropeanaObjectParserImpl implements EuropeanaObjectParser {
     }
 
     @Override
-    public EuropeanaObjectEntity parseSimpleRecord(String jsonInput) {
-        EuropeanaObjectEntity e = new EuropeanaObjectEntity();
-        JSONObject jsonObject = (JSONObject) JSONSerializer.toJSON(jsonInput);
-        if(jsonObject.containsKey("id"))
-            e.setObjectId(jsonObject.getString("id"));
-        if(jsonObject.containsKey("title"))
-            e.setTitle(jsonObject.getString("title"));
-        if(jsonObject.containsKey("type"))
-            e.setDescription(jsonObject.getString("type"));
+    public DetailedObjectEntity parseSimpleRecord(String json) {
+        DetailedObjectEntity e = new DetailedObjectEntity();
+        JSONObject tempObj = (JSONObject) JSONSerializer.toJSON(json);
+        JSONObject tempObject = null;
+        JSONArray tempProxiesAggre = null;
+        JSONObject proxyAggre = null;
+        JSONObject temp = null;
+        JSONArray tempArray = null;
+        if(tempObj.containsKey("object")) {
+            tempObject = tempObj.getJSONObject("object");
+            if(tempObject.containsKey("about")) {
+                e.setObjectId(tempObject.getString("about"));
+            }
+        }
+        if(tempObject.containsKey("proxies")) {
+            tempProxiesAggre =  tempObject.getJSONArray("proxies");
+            proxyAggre = tempProxiesAggre.getJSONObject(0);
+            if(proxyAggre.containsKey("dcCreator")) {
+                temp = proxyAggre.getJSONObject("dcCreator");
+                if(temp.containsKey("def")) {
+                    tempArray = temp.getJSONArray("def");
+                    e.setDcCreator(tempArray.get(0).toString());
+                }
+            }
 
+            if(proxyAggre.containsKey("dcLanguage")) {
+                temp = proxyAggre.getJSONObject("dcLanguage");
+                if(temp.containsKey("def")) {
+                    tempArray = temp.getJSONArray("def");
+                    e.setDcLanguage(tempArray.get(0).toString());
+                }
+            }
+
+            if(proxyAggre.containsKey("dcType")) {
+                temp = proxyAggre.getJSONObject("dcType");
+                String[] dcType = new String[2];
+                int c = 0;
+                if(temp.containsKey("def")) {
+                    tempArray = temp.getJSONArray("def");
+                    dcType[c] = (tempArray.get(0).toString());
+                    c++;
+                }
+                if(temp.containsKey("eng")) {
+                    tempArray = temp.getJSONArray("eng");
+                    dcType[c] = (tempArray.get(0).toString());
+                    c++;
+                }
+                c=0;
+                e.setDcType(dcType);
+
+            }
+
+            if(proxyAggre.containsKey("dcDescription")) {
+                temp = proxyAggre.getJSONObject("dcDescription");
+                String[] dcDesc = null;
+                String[] dcDesc2 = null;
+                if(temp.containsKey("def")) {
+                    tempArray = temp.getJSONArray("def");
+                    dcDesc = new String[tempArray.size()];
+                    for(int c = 0; c < tempArray.size(); c++)
+                        dcDesc[c] = (tempArray.get(c).toString());
+                }
+                if(temp.containsKey("eng")) {
+                    tempArray = temp.getJSONArray("eng");
+                    dcDesc2 = new String[tempArray.size()];
+                    for(int c = 0; c < tempArray.size(); c++) {
+                        dcDesc2[c] = (tempArray.get(c).toString());
+                    }
+                }
+                e.setDcDescription((String[]) ArrayUtils.addAll(dcDesc, dcDesc2));
+            }
+        }
+
+        if(tempObject.containsKey("aggregations")) {
+            tempProxiesAggre = tempObject.getJSONArray("aggregations");
+            proxyAggre = tempProxiesAggre.getJSONObject(0);
+            if (proxyAggre.containsKey("edmDataProvider")) {
+                temp = proxyAggre.getJSONObject("edmDataProvider");
+                if (temp.containsKey("def")) {
+                    tempArray = temp.getJSONArray("def");
+                    e.setEdmDataProvider(tempArray.get(0).toString());
+                }
+            }
+
+            if (proxyAggre.containsKey("edmProvider")) {
+                temp = proxyAggre.getJSONObject("edmProvider");
+                if (temp.containsKey("def")) {
+                    tempArray = temp.getJSONArray("def");
+                    e.setEdmProvider(tempArray.get(0).toString());
+                }
+            }
+
+            if (proxyAggre.containsKey("edmObject")) {
+                e.setEdmObject(proxyAggre.getString("edmObject"));
+            }
+
+            if (proxyAggre.containsKey("webResources")) {
+                JSONArray temparray2 = proxyAggre.getJSONArray("webResources");
+                String[] docas = new String[temparray2.size()];
+                for (int i = 0; i < temparray2.size(); i++) {
+                    temp = temparray2.getJSONObject(i);
+                    if (temp.containsKey("about")) {
+                        docas[i] = temp.getString("about");
+                    }
+                }
+                e.setWebResources(docas);
+            }
+        }
         return e;
     }
 }
