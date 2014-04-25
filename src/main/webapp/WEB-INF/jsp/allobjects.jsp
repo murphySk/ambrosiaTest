@@ -11,10 +11,9 @@
         <div id="content">
             <fmt:message key="index.property_message"/>
         </div>
-        <h2>bu</h2>
         <c:forEach var="EuropeanaObjectEntity" items="${list}">
-           <a href="/ambrosia/detail/?id=<c:out value="${EuropeanaObjectEntity.getObjectId()}"/>"> <h2><c:out value="${EuropeanaObjectEntity.getTitle()}"/></h2></a>
-            <img src="<c:out value="${EuropeanaObjectEntity.getEdmPreview()}"/>">
+           <a href="/ambrosia/detail/?id=<c:out value="${EuropeanaObjectEntity.getObjectId()}"/>"><p style="font-family:arial;color:black;font-size:20px;"><c:out value="${EuropeanaObjectEntity.getTitle()}"/></p><img src="<c:out value="${EuropeanaObjectEntity.getEdmPreview()}"/>"  width="150"> </a>
+
 
 
             <br>

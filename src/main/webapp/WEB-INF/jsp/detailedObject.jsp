@@ -9,13 +9,11 @@
     <body>
         <div id="content">
             <fmt:message key="index.property_message"/>
-            <h2>bubak</h2>
         </div>
 
         <c:forEach var="EuropeanaObjectEntity" items="${list}">
-                   <h2><c:out value="${EuropeanaObjectEntity}"/></h2>
-                   <br>
-                </c:forEach>
+                   <p style="font-family:arial;color:black;font-size:20px;text-align:center;"><c:out value="${EuropeanaObjectEntity}"/></p>
+                    </c:forEach>
                 Searched term was <%= request.getParameter("id")%>
 
     </body>
