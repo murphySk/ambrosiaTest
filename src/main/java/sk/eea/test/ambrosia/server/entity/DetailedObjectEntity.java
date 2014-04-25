@@ -1,12 +1,11 @@
 package sk.eea.test.ambrosia.server.entity;
 
-import java.util.Map;
-
 /**
  * Created by marti_000 on 4/25/2014.
  */
 public class DetailedObjectEntity {
     private String objectId;
+    private String title;
     private String dcCreator;  //tvorca diela
     private String[] dcType;   //typ diela
     private String edmDataProvider; //poskytovatel dat do europeany
@@ -14,7 +13,7 @@ public class DetailedObjectEntity {
     private String[] dcDescription;   //popis diela
     private String dcLanguage;      //jazyk v ktorom je dielo
     private String edmCountry;      //krajina poskytovatel diela
-    private String edmObject;       //url k objektu(vacsinou obrazok)
+    private String edmPreview;       //url k objektu(vacsinou obrazok)
     private String[] webResources;   //linky na info o diele na webe
 
     public String getObjectId() {
@@ -81,12 +80,12 @@ public class DetailedObjectEntity {
         this.edmCountry = edmCountry;
     }
 
-    public String getEdmObject() {
-        return edmObject;
+    public String getEdmPreview() {
+        return edmPreview;
     }
 
-    public void setEdmObject(String edmObject) {
-        this.edmObject = edmObject;
+    public void setEdmPreview(String edmPreview) {
+        this.edmPreview = edmPreview;
     }
 
     public String[] getWebResources() {
@@ -95,5 +94,13 @@ public class DetailedObjectEntity {
 
     public void setWebResources(String[] webResources) {
         this.webResources = webResources;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

@@ -13,9 +13,6 @@
         </div>
         <c:forEach var="EuropeanaObjectEntity" items="${list}">
            <a href="/ambrosia/detail/?id=<c:out value="${EuropeanaObjectEntity.getObjectId()}"/>"><p style="font-family:arial;color:black;font-size:20px;"><c:out value="${EuropeanaObjectEntity.getTitle()}"/></p><img src="<c:out value="${EuropeanaObjectEntity.getEdmPreview()}"/>"  width="150"> </a>
-
-
-
             <br>
         </c:forEach>
         Searched term was <%= request.getParameter("term")%>

@@ -93,6 +93,10 @@ public class EuropeanaObjectParserImpl implements EuropeanaObjectParser {
             if(tempObject.containsKey("about")) {
                 e.setObjectId(tempObject.getString("about"));
             }
+            if(tempObject.containsKey("title")) {
+                tempArray =  tempObject.getJSONArray("title");
+                e.setObjectId(tempArray.get(0).toString());
+            }
         }
         if(tempObject.containsKey("proxies")) {
             tempProxiesAggre =  tempObject.getJSONArray("proxies");
@@ -153,6 +157,13 @@ public class EuropeanaObjectParserImpl implements EuropeanaObjectParser {
             }
         }
 
+        if(tempObject.containsKey("europeanaAggregation")) {
+            proxyAggre = tempObject.getJSONObject("europeanaAggregation");
+            if (proxyAggre.containsKey("edmPreview")) {
+                e.setEdmPreview(proxyAggre.getString("edmPreview"));
+            }
+        }
+
         if(tempObject.containsKey("aggregations")) {
             tempProxiesAggre = tempObject.getJSONArray("aggregations");
             proxyAggre = tempProxiesAggre.getJSONObject(0);
@@ -170,10 +181,6 @@ public class EuropeanaObjectParserImpl implements EuropeanaObjectParser {
                     tempArray = temp.getJSONArray("def");
                     e.setEdmProvider(tempArray.get(0).toString());
                 }
-            }
-
-            if (proxyAggre.containsKey("edmObject")) {
-                e.setEdmObject(proxyAggre.getString("edmObject"));
             }
 
             if (proxyAggre.containsKey("webResources")) {

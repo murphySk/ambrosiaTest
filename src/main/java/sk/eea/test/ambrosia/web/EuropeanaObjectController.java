@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import sk.eea.test.ambrosia.server.entity.DetailedObjectEntity;
 import sk.eea.test.ambrosia.server.entity.EuropeanaObjectEntity;
 import sk.eea.test.ambrosia.services.EuropeanaDataFetchService;
 import sk.eea.test.ambrosia.services.impl.EuropeanaDataFetchServiceImpl;
@@ -48,14 +49,17 @@ public class EuropeanaObjectController {
     @RequestMapping(value = "/detail", method = RequestMethod.GET)
     public String handleRequestAllObjects(ModelMap model, HttpServletRequest request) {
         final String USER_AGENT="Mozzila/5.0";
-       // EuropeanaObjectParserImpl dummyPars = new EuropeanaObjectParserImpl();
+        EuropeanaObjectParserImpl dummyPars = new EuropeanaObjectParserImpl();
         EuropeanaDataFetchServiceImpl con = new EuropeanaDataFetchServiceImpl();
+        DetailedObjectEntity obj;
+
         String id= request.getParameter("id");
 
         String url="http://europeana.eu/api/v2/record/"+id+".json?wskey=PaVZsTDPQ";
         try {
             String list =con.sendHttpGetRequest2(url);
-            model.addAttribute("list", list);
+            obj = dummyPars.parseSimpleRecord(list);
+            model.addAttribute("obj", obj);
         } catch (Exception e) {
             e.printStackTrace();
         }

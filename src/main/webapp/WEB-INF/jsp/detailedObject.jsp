@@ -8,13 +8,51 @@
 <html>
     <body>
         <div id="content">
-            <fmt:message key="index.property_message"/>
+            <fmt:message key="index.property_message"/><br>
+            <c:if test="${empty obj.dcCreator}">
+                Creator: unknown<br>
+            </c:if>
+            <c:if test="${!empty obj.dcCreator}">
+                Creator: <c:out value="${obj.dcCreator}"/><br>
+            </c:if>
+            <c:if test="${empty obj.edmDataProvider}">
+                Data Provider: unknown<br>
+            </c:if>
+            <c:if test="${!empty obj.edmDataProvider}">
+                Data Provider: <c:out value="${obj.edmDataProvider}"/><br>
+            </c:if>
+            <c:if test="${empty obj.edmProvider}">
+                Object Provider: unknown<br>
+            </c:if>
+            <c:if test="${!empty obj.edmProvider}">
+                Object Provider: <c:out value="${obj.edmProvider}"/><br>
+            </c:if>
+            <c:if test="${empty obj.dcLanguage}">
+                Language: unknown<br>
+            </c:if>
+            <c:if test="${!empty obj.dcLanguage}">
+                Language: <c:out value="${obj.dcLanguage}"/><br>
+            </c:if>
+            <c:if test="${empty obj.edmCountry}">
+                Country of origin: unknown<br>
+            </c:if>
+            <c:if test="${!empty obj.edmCountry}">
+                Country of origin: <c:out value="${obj.edmCountry}"/><br>
+            </c:if>
+            <c:if test="${empty obj.edmPreview}">
+                edmPreview: unknown<br>
+            </c:if>
+            <c:if test="${!empty obj.edmPreview}">
+                edmPreview: <c:out value="${obj.edmPreview}"/><br>
+            </c:if>
+            <c:if test="${empty obj.title}">
+                title: unknown<br>
+            </c:if>
+            <c:if test="${!empty obj.title}">
+                title: <c:out value="${obj.title}"/><br>
+            </c:if>
+
+            Searched term was <%= request.getParameter("id")%>
         </div>
-
-        <c:forEach var="EuropeanaObjectEntity" items="${list}">
-                   <p style="font-family:arial;color:black;font-size:20px;text-align:center;"><c:out value="${EuropeanaObjectEntity}"/></p>
-                    </c:forEach>
-                Searched term was <%= request.getParameter("id")%>
-
     </body>
 </html>
