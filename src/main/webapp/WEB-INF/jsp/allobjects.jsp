@@ -7,17 +7,30 @@
 <%@ page import="sk.eea.test.ambrosia.services.impl.EuropeanaObjectParserImpl" %>
 
 <html>
+<head>
+ 	<link href="<c:url value="/css/style.css" />" rel="stylesheet">
+</head>
     <body>
         <div id="content">
             <fmt:message key="index.property_message"/>
-        </div>
-        <c:forEach var="EuropeanaObjectEntity" items="${list}">
-           <a href="/ambrosia/detail/?id=<c:out value="${EuropeanaObjectEntity.getObjectId()}"/>"><p style="font-family:arial;color:black;font-size:20px;"><c:out value="${EuropeanaObjectEntity.getTitle()}"/></p><img src="<c:out value="${EuropeanaObjectEntity.getEdmPreview()}"/>"  width="150"> </a>
+            <c:forEach var="EuropeanaObjectEntity" items="${list}">
+                 <div class="row">
+                    <div class="left">
+                        <a href="/ambrosia/detail/?id=<c:out value="${EuropeanaObjectEntity.getObjectId()}"/>">
+                         <p>
+                        <c:out value="${EuropeanaObjectEntity.getTitle()}"/></p>
+                        <img src="<c:out value="${EuropeanaObjectEntity.getEdmPreview()}"/>"  width="150"> </a>
+                     </div>
 
+                    <div class="middle">
+                         <p>
+                         <br><br><br>
+                         <c:out value="${EuropeanaObjectEntity.getProvider()}"/> <br> <c:out value="${EuropeanaObjectEntity.getLanguage()}"/> </p>
+                    </div>
 
-
-            <br>
-        </c:forEach>
-        Searched term was <%= request.getParameter("term")%>
+                    <div class="clear">
+                    </div>
+                </div>
+            </c:forEach>
     </body>
 </html>
