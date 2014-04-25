@@ -1,4 +1,35 @@
-h2 {
-color: orange;
-text-align: center;
+.left
+{
+float:left;
+width:300px;
 }
+
+a{
+font-family:"Times New Roman", Times, serif;
+}
+
+p.normal {font-style:normal;}
+p.italic {font-style:italic;}
+p.oblique {font-style:oblique;}
+
+
+
+.middle
+{
+float:middle;
+}
+
+.row:nth-of-type(even)
+{
+background-color:#6495ed;
+
+}
+.row:nth-of-type(odd)
+ {
+ background-color:#b0c4de;
+
+ }
+
+ .clear{
+clear: both;
+ }

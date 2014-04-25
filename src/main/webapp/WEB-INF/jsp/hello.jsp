@@ -5,9 +5,7 @@
 
 
 <html>
-    <head>
-    	<link href="<c:url value="/css/style.css" />" rel="stylesheet">
-    </head>
+
     <body>
         <div id="content">
             <fmt:message key="index.property_message"/>
