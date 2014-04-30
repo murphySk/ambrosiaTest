@@ -33,3 +33,21 @@ background-color:#6495ed;
  .clear{
 clear: both;
  }
+
+#previewImg{
+float:left;
+margin:20px;
+}
+
+#title{
+width: 900px;
+margin: 0 auto;
+}
+
+#tags{
+margin-left: 20px;
+}
+
+
+
+

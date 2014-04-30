@@ -95,7 +95,7 @@ public class EuropeanaObjectParserImpl implements EuropeanaObjectParser {
             }
             if(tempObject.containsKey("title")) {
                 tempArray =  tempObject.getJSONArray("title");
-                e.setObjectId(tempArray.get(0).toString());
+                e.setTitle(tempArray.get(0).toString());
             }
         }
         if(tempObject.containsKey("proxies")) {

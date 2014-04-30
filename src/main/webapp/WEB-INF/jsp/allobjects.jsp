@@ -6,6 +6,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="sk.eea.test.ambrosia.services.impl.EuropeanaObjectParserImpl" %>
 
+
 <html>
 <head>
  	<link href="<c:url value="/css/style.css" />" rel="stylesheet">
