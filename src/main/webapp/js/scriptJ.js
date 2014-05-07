@@ -1,4 +1,3 @@
-i=0;
 $(document).ready(function(){
  var availableTags = [
       "silvika",
@@ -12,7 +11,8 @@ $(document).ready(function(){
 //});
 
 
-  $('#tags input').on('focusout',function(){    
+  $('#tags input').on('focusout',function(){   
+     document.getElementById("textarea").style.borderColor="#eee";
     var txt= this.value.replace(/[^a-zA-Z0-9\+\-\.\#]/g,''); 
     if(txt) {
         if ($.inArray(txt,availableTags) == -1) {
@@ -31,7 +31,13 @@ $(document).ready(function(){
   });
    
   
+   $('#tags input').on('click',function(){
+   
+        document.getElementById("textarea").style.borderColor="#3399FF";
+  });
+  
       $('#tags').on('click','.tag',function(){
+      document.getElementById("textarea").style.borderColor="#eee";
      if(confirm("Really delete this tag?")) $(this).remove(); 
   });
   
@@ -45,6 +51,7 @@ $(document).ready(function(){
     
   });
   
+
   
 $( "#autocomplete" ).autocomplete({
   source: availableTags

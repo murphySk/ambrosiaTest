@@ -21,12 +21,16 @@
     </head>
     <body>
 
-        <div id="tags">
-         <p> <span class="tag">marosko</span>
-            <span class="tag">martinko</span>
-            <span class="tag">silvika</span>
-            <input type="text" id="autocomplete" value="" placeholder="Add a tag" /> </p>
-          </div>
+       <div id="tags" >
+       <div id="textarea" contenteditable>
+           <span class="tag" id="bu">marosko</span>
+           <span class="tag" id="bu">martinko</span>
+           <span class="tag" id="bu">silvika</span>
+
+           <input type="text" id="autocomplete" value="" placeholder="Add a tag" />
+           </div>
+         </div>
+
 
         <div id="content">
             <!-- <fmt:message key="index.property_message"/><br> -->

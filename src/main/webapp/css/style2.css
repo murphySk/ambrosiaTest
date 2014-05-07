@@ -13,7 +13,7 @@
   background:#C0C0C0;
   padding:5px;
   padding-right:25px;
-  margin:4px;
+  margin:4px; 
 }
 #tags span.tag:hover{
   opacity:0.7;
@@ -33,4 +33,16 @@
   border:0;
   padding:10px;
   width:auto;
+}
+#tags input:focus
+{ 
+outline: none !important;
+}
+#textarea
+{
+background:#eee;
+border-style:solid;
+border-width:2px;	
+border-color:#eee;
+outline-color:#eee;
 }
