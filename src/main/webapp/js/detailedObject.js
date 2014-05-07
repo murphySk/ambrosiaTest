@@ -1,6 +1,6 @@
 $(document).ready(function(){
   $("#lessTitle").click(function(){
-    $("#tags").slideToggle();
+    $("#detailedInfo").slideToggle();
     if($("#lessTitle").text() == "More information"){
         console.log("More zbehla")
         $("#lessTitle").text("Less information");
@@ -10,4 +10,8 @@ $(document).ready(function(){
         $("#lessTitle").text("More information");
     }
   });
+  $.getJSON('/ambrosia/js/test.json', function(data) {
+    console.log(data.meno);
+    $("#skuska").text(data.meno.length);
+  })
 });

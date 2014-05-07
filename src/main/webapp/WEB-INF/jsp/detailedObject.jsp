@@ -16,6 +16,8 @@
         <script src="<c:url value="/js/jquery-ui-1.10.4.js"/>"></script>
         <script src="<c:url value="/js/jquery-ui-1.10.4.min.js"/>"></script>
         <script src="<c:url value="/js/scriptJ.js"/>"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="<c:url value="/js/pokus.js"/>"></script>
     </head>
     <body>
 
@@ -28,7 +30,6 @@
 
         <div id="content">
             <!-- <fmt:message key="index.property_message"/><br> -->
-
             <c:if test="${empty obj.title}">
                  <h1 id="title" align="left">No title in this record</h1>
             </c:if>
@@ -49,7 +50,7 @@
             </div>
             <div class="clear"></div>
             <h2 class = "info" id = "lessTitle">Less information</h2>
-            <div class = "info" id = "tags">
+            <div class = "info" id = "detailedInfo">
                 <c:if test="${empty obj.dcCreator}">
                     Creator: unknown<br>
                 </c:if>
@@ -88,6 +89,7 @@
             </div>
 
             Searched term was <%= request.getParameter("id")%>
+            <div id = "skuska">ToTo je skuska</div>
         </div>
     </body>
 </html>
