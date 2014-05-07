@@ -15,6 +15,7 @@ public class DetailedObjectEntity {
     private String edmCountry;      //krajina poskytovatel diela
     private String edmPreview;       //url k objektu(vacsinou obrazok)
     private String[] webResources;   //linky na info o diele na webe
+    private String edmLandingPage;  //link na stranku objektu v europeane
 
     public String getObjectId() {
         return objectId;
@@ -102,5 +103,13 @@ public class DetailedObjectEntity {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getEdmLandingPage() {
+        return edmLandingPage;
+    }
+
+    public void setEdmLandingPage(String edmLandingPage) {
+        this.edmLandingPage = edmLandingPage;
     }
 }

@@ -40,11 +40,11 @@ margin:20px;
 }
 
 #title{
-width: 900px;
-margin: 0 auto;
-}
+ width: 900px;
+ margin:20px;
+ }
 
-#tags{
+.info{
 margin-left: 20px;
 }
 

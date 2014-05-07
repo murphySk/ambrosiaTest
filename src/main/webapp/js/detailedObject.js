@@ -1,3 +1,6 @@
-function myFunction() {
-    document.getElementById("demo").innerHTML = "Paragraph changed.";
-}
+$(document).ready(function(){
+  $("#lessTitle").click(function(){
+    $("#tags").slideToggle();
+    $("#lessTitle").text("More information")
+  });
+});

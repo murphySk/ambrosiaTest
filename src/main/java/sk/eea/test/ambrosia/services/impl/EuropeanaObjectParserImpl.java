@@ -162,6 +162,10 @@ public class EuropeanaObjectParserImpl implements EuropeanaObjectParser {
             if (proxyAggre.containsKey("edmPreview")) {
                 e.setEdmPreview(proxyAggre.getString("edmPreview"));
             }
+
+            if (proxyAggre.containsKey("edmLandingPage")) {
+                e.setEdmLandingPage(proxyAggre.getString("edmLandingPage"));
+            }
         }
 
         if(tempObject.containsKey("aggregations")) {

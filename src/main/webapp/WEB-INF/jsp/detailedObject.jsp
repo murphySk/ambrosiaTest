@@ -8,16 +8,19 @@
 <%@ page import="java.util.Arrays" %>
 <html>
     <head>
-     	<link href="<c:url value="/css/style.css" />" rel="stylesheet">
+     	<link href="<c:url value="/css/style.css"/>" rel="stylesheet">
+     	<script src="<c:url value="/js/jquery-2.1.1.js"/>"></script>
+     	<script src="<c:url value="/js/detailedObject.js"/>"></script>
     </head>
     <body>
         <div id="content">
             <!-- <fmt:message key="index.property_message"/><br> -->
+
             <c:if test="${empty obj.title}">
-                 <h2 id="title" align="center">No title in this record</h2>
+                 <h1 id="title" align="left">No title in this record</h1>
             </c:if>
             <c:if test="${!empty obj.title}">
-                 <h2 id="title" align="center"><c:out value="${obj.title}"/></h2>
+                 <h1 id="title" align="left"><c:out value="${obj.title}"/></h1>
             </c:if>
             <div class="clear"></div>
             <img id="previewImg" src="<c:out value="${obj.edmPreview}"/>">
@@ -32,7 +35,8 @@
                 </c:if>
             </div>
             <div class="clear"></div>
-            <div id="tags">
+            <h2 class = "info" id = "lessTitle">Less information</h2>
+            <div class = "info" id = "tags">
                 <c:if test="${empty obj.dcCreator}">
                     Creator: unknown<br>
                 </c:if>
@@ -62,6 +66,11 @@
                 </c:if>
                 <c:if test="${!empty obj.edmCountry}">
                     Country of origin: <c:out value="${obj.edmCountry}"/><br>
+                </c:if>
+                <c:if test="${empty obj.edmLandingPage}">
+                </c:if>
+                <c:if test="${!empty obj.edmLandingPage}">
+                    <a href="<c:out value="${obj.edmLandingPage}"/>">Europeana link</a><br>
                 </c:if>
             </div>
 
