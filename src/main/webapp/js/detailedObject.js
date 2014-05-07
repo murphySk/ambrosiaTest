@@ -1,6 +1,13 @@
 $(document).ready(function(){
   $("#lessTitle").click(function(){
     $("#tags").slideToggle();
-    $("#lessTitle").text("More information")
+    if($("#lessTitle").text() == "More information"){
+        console.log("More zbehla")
+        $("#lessTitle").text("Less information");
+    }
+    else if($("#lessTitle").text() == "Less information"){
+        console.log("Less zbehla")
+        $("#lessTitle").text("More information");
+    }
   });
 });
