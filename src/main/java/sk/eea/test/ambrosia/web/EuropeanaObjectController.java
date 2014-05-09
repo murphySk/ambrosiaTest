@@ -69,7 +69,7 @@ public class EuropeanaObjectController {
         } catch (Exception e) {
             e.printStackTrace();
         }*/
-
+        System.out.println("Z euObjControlleru");
         return "detailedObject";
     }
 
