@@ -22,12 +22,22 @@ $(document).ready(function(){
       $(this).before('<span class="tag">'+ txt.toLowerCase() +'</span>');
     }
     this.value="";
+    console.log(txt);
+    var param = "?txt=";
+    var params = param.concat(txt);
+    console.log(params);
+    var urll = "/ambrosia/detailedObject";
+    var url = urll.concat(params);
+    console.log(url);
+    xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
   }).keypress(function(e) {
-  
+
     if (e.which == '13') {
        $(this).focusout();
    }
-   
+
   });
    
   

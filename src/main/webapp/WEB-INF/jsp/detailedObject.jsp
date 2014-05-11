@@ -31,10 +31,6 @@
 
 
         <div id="content">
-            <form method="POST" action="/ambrosia/detailedObject">
-                <input type="text" name="tagName"/>
-                <input type="submit" value="Submit">
-            </form>
             <!-- <fmt:message key="index.property_message"/><br> -->
             <c:if test="${empty obj.title}">
                  <h1 id="title" align="left">No title in this record</h1>

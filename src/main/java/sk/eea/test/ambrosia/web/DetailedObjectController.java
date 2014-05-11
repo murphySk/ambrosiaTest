@@ -4,11 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
 import sk.eea.test.ambrosia.server.dao.TagDAO;
+import sk.eea.test.ambrosia.server.entity.TagEntity;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -19,10 +17,21 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class DetailedObjectController {
 
-    @RequestMapping(value = "/detailedObject", method = RequestMethod.POST)
+    @Autowired
+    private TagDAO tagDAO;
+
+    @RequestMapping(value = "/detailedObject", method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
-    public void addTag(ModelMap model, HttpServletRequest request){
-        String tagName = request.getParameter("tagName");
+    public @ResponseBody
+    void addTag(ModelMap model, @RequestParam("txt") String name){
+        String tagName = name;
+
+        /*TagEntity tagEntity = new TagEntity();
+        tagEntity.setNormalizedTag(tagName);
+        tagEntity.setTag(tagName);
+        tagName.replaceAll(" ","-");
+        tagEntity.setUser(null);
+        tagDAO.makePersistent(tagEntity); */
         System.out.println(tagName);
         //model.addAttribute(tagName);
     }
