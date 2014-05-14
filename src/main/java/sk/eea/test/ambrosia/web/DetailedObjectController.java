@@ -8,7 +8,10 @@ import org.springframework.web.bind.annotation.*;
 import sk.eea.test.ambrosia.server.dao.TagDAO;
 import sk.eea.test.ambrosia.server.entity.TagEntity;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.text.Normalizer;
+import java.util.List;
 
 /**
  * Created by marti_000 on 4/25/2014.
@@ -25,14 +28,24 @@ public class DetailedObjectController {
     public @ResponseBody
     void addTag(ModelMap model, @RequestParam("txt") String name){
         String tagName = name;
-
-        /*TagEntity tagEntity = new TagEntity();
-        tagEntity.setNormalizedTag(tagName);
+       /* TagEntity tagEntity = new TagEntity();
         tagEntity.setTag(tagName);
-        tagName.replaceAll(" ","-");
-        tagEntity.setUser(null);
-        tagDAO.makePersistent(tagEntity); */
         System.out.println(tagName);
-        //model.addAttribute(tagName);
+        tagName= Normalizer.normalize(tagName, Normalizer.Form.NFD);
+        tagName=tagName.replaceAll("\\p{M}", "");
+        System.out.println(tagName);
+        tagEntity.setNormalizedTag(tagName);
+        tagDAO.makePersistent(tagEntity);*/
+
+    }
+
+    void getTags(String[] partOfTag){
+        //TagEntity tagEntity = new TagEntity();
+        //List<TagEntity> tagEntities= tagDAO.findByExample(tagEntity, partOfTag);
+
+    }
+
+    void deleteTag(){
+
     }
 }

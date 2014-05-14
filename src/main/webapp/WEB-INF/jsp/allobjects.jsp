@@ -13,8 +13,7 @@
 </head>
     <body>
         <div id="content">
-            <fmt:message key="index.property_message"/>
-            <c:forEach var="EuropeanaObjectEntity" items="${list}">
+             <c:forEach var="EuropeanaObjectEntity" items="${list}">
                  <div class="row">
                     <div class="left">
                         <a href="/ambrosia/detail/?id=<c:out value="${EuropeanaObjectEntity.getObjectId()}"/>">

@@ -4,38 +4,37 @@ $(document).ready(function(){
       "martinko",
       "marosko"
     ];
- // $("input").keypress(function(e) {
- // if (e.which == '13') {
-        //$("input").css("background-color","yellow");
- // }
-//});
-
 
   $('#tags input').on('focusout',function(){   
      document.getElementById("textarea").style.borderColor="#eee";
     var txt= this.value.replace(/[^a-zA-Z0-9\+\-\.\#]/g,''); 
     if(txt) {
         if ($.inArray(txt,availableTags) == -1) {
-          availableTags.push(txt) ;
-        }
+            $(this).before('<span class="tag">'+ txt.toLowerCase() +'</span>');
+             availableTags.push(txt) ;
+             this.value="";
+             console.log(txt);
+             var param = "?txt=";
+             var params = param.concat(txt);
+             console.log(params);
+             var urll = "/ambrosia/detailedObject";
+             var url = urll.concat(params);
+              console.log(url);
+               xmlhttp = new XMLHttpRequest();
+               xmlhttp.open("GET", url, true);
+               xmlhttp.send();
+
+        }else console.log("existing tag");
       
-      $(this).before('<span class="tag">'+ txt.toLowerCase() +'</span>');
+
     }
     this.value="";
-    console.log(txt);
-    var param = "?txt=";
-    var params = param.concat(txt);
-    console.log(params);
-    var urll = "/ambrosia/detailedObject";
-    var url = urll.concat(params);
-    console.log(url);
-    xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("GET", url, true);
-    xmlhttp.send();
+
   }).keypress(function(e) {
 
     if (e.which == '13') {
        $(this).focusout();
+
    }
 
   });

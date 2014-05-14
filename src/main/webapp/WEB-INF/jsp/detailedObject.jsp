@@ -22,16 +22,14 @@
 
        <div id="tags" >
        <div id="textarea" contenteditable>
-           <span class="tag" id="bu">marosko</span>
-           <span class="tag" id="bu">martinko</span>
-           <span class="tag" id="bu">silvika</span>
-                <input type="text" id="autocomplete" value="" placeholder="Add a tag"/>
+
+           <input type="text" id="autocomplete" value="" placeholder="Add a tag"/>
            </div>
          </div>
 
 
         <div id="content">
-            <!-- <fmt:message key="index.property_message"/><br> -->
+
             <c:if test="${empty obj.title}">
                  <h1 id="title" align="left">No title in this record</h1>
             </c:if>
@@ -89,9 +87,6 @@
                     <a href="<c:out value="${obj.edmLandingPage}"/>">Europeana link</a><br>
                 </c:if>
             </div>
-
-            Searched term was <%= request.getParameter("id")%>
-            <div id = "skuska">ToTo je skuska</div>
         </div>
     </body>
 </html>
