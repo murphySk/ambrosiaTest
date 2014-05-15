@@ -10,6 +10,7 @@ import sk.eea.test.ambrosia.server.entity.TagEntity;
 import sk.eea.test.ambrosia.server.entity.UserEntity;
 
 import javax.annotation.Resource;
+import java.text.Normalizer;
 
 /**
  * Created by murphy on 3/28/14.
@@ -50,5 +51,26 @@ public class UserTagTest extends ApplicationContextAwareTest {
         Assert.assertEquals(size + 1, tagDAO.findAll().size());
     }
 
+
+    @Test
+    public void testTagInsert() {
+        String tagName = "čťtbbuzťz jniu";
+        TagEntity tagEntity = new TagEntity();
+        UserEntity userEntity = new UserEntity();
+        userEntity.setPassword("1111");
+        userEntity.setUserName("uzivatel");
+        userEntity = userDAO.makePersistent(userEntity);
+        tagEntity.setTag(tagName);
+        System.out.println(tagName);
+        tagName= Normalizer.normalize(tagName, Normalizer.Form.NFD);
+        tagName=tagName.replaceAll("\\p{M}", "");
+        System.out.println(tagName);
+        tagEntity.setNormalizedTag(tagName);
+        tagEntity.setUser(userEntity);
+        int size = tagDAO.findAll().size();
+        tagDAO.makePersistent(tagEntity);
+
+        Assert.assertEquals(size + 1, tagDAO.findAll().size());
+    }
 
 }

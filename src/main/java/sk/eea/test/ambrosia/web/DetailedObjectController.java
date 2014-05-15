@@ -6,7 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import sk.eea.test.ambrosia.server.dao.TagDAO;
+import sk.eea.test.ambrosia.server.dao.UserDAO;
 import sk.eea.test.ambrosia.server.entity.TagEntity;
+import sk.eea.test.ambrosia.server.entity.UserEntity;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -23,26 +25,38 @@ public class DetailedObjectController {
     @Autowired
     private TagDAO tagDAO;
 
+    @Autowired
+    private UserDAO userDAO;
+
     @RequestMapping(value = "/detailedObject", method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
     public @ResponseBody
     void addTag(ModelMap model, @RequestParam("txt") String name){
         String tagName = name;
-       /* TagEntity tagEntity = new TagEntity();
+        TagEntity tagEntity = new TagEntity();
+        UserEntity userEntity = new UserEntity();
+        userEntity.setPassword("1111");
+        userEntity.setUserName("uzivatel");
+        userEntity = userDAO.makePersistent(userEntity);
         tagEntity.setTag(tagName);
-        System.out.println(tagName);
+        //System.out.println(tagName);
         tagName= Normalizer.normalize(tagName, Normalizer.Form.NFD);
         tagName=tagName.replaceAll("\\p{M}", "");
-        System.out.println(tagName);
+        //System.out.println(tagName);
         tagEntity.setNormalizedTag(tagName);
-        tagDAO.makePersistent(tagEntity);*/
+        tagEntity.setUser(userEntity);
+        tagDAO.makePersistent(tagEntity);
 
     }
 
-    void getTags(String[] partOfTag){
-        //TagEntity tagEntity = new TagEntity();
-        //List<TagEntity> tagEntities= tagDAO.findByExample(tagEntity, partOfTag);
-
+    @RequestMapping(value = "/detailedObject", method = RequestMethod.GET)
+    @ResponseStatus(value = HttpStatus.OK)
+    public @ResponseBody
+    String getTags(ModelMap model, @RequestParam("txt2") String partOfTag){
+        TagEntity tagEntity = new TagEntity();
+       // List<TagEntity> tagEntities= tagDAO.findByExample(tagEntity, partOfTag);
+        System.out.println(partOfTag);
+        return partOfTag;
     }
 
     void deleteTag(){
