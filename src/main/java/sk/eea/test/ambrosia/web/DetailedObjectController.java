@@ -39,7 +39,7 @@ public class DetailedObjectController {
         userEntity.setUserName("uzivatel");
         userEntity = userDAO.makePersistent(userEntity);
         tagEntity.setTag(tagName);
-        //System.out.println(tagName);
+        System.out.println(tagName+" PRIDAVAM" );
         tagName= Normalizer.normalize(tagName, Normalizer.Form.NFD);
         tagName=tagName.replaceAll("\\p{M}", "");
         //System.out.println(tagName);
@@ -49,13 +49,13 @@ public class DetailedObjectController {
 
     }
 
-    @RequestMapping(value = "/detailedObject", method = RequestMethod.GET)
+    @RequestMapping(value = "/detailedObject2", method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
     public @ResponseBody
     String getTags(ModelMap model, @RequestParam("txt2") String partOfTag){
         TagEntity tagEntity = new TagEntity();
        // List<TagEntity> tagEntities= tagDAO.findByExample(tagEntity, partOfTag);
-        System.out.println(partOfTag);
+        System.out.println(partOfTag+"HLADAM");
         return partOfTag;
     }
 

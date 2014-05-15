@@ -46,3 +46,7 @@ border-width:2px;
 border-color:#eee;
 outline-color:#eee;
 }
+
+h1{
+float:left;
+}

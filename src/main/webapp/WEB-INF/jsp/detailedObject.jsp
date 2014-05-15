@@ -20,22 +20,26 @@
     </head>
     <body>
 
-       <div id="tags" >
-       <div id="textarea" contenteditable>
 
-           <input type="text" id="autocomplete" value="" placeholder="Add a tag"/>
-           </div>
-         </div>
 
 
         <div id="content">
 
             <c:if test="${empty obj.title}">
+                <br>
                  <h1 id="title" align="left">No title in this record</h1>
             </c:if>
             <c:if test="${!empty obj.title}">
+                 <br>
                  <h1 id="title" align="left"><c:out value="${obj.title}"/></h1>
             </c:if>
+
+            <div id="tags" >
+               <div id="textarea" contenteditable>
+                 <input type="text" id="autocomplete" value="" placeholder="Add a tag"/>
+               </div>
+             </div>
+             
             <div class="clear"></div>
             <img id="previewImg" src="<c:out value="${obj.edmPreview}"/>">
             <div id="desc">
