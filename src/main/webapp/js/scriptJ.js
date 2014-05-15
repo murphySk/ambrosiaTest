@@ -5,6 +5,7 @@ $(document).ready(function(){
       "marosko"
     ];
    var pocitadlo=0;
+   var vypis;
 
   $('#tags input').on('focusout',function(){   
      document.getElementById("textarea").style.borderColor="#eee";
@@ -31,20 +32,21 @@ $(document).ready(function(){
     }
     this.value="";
 
-  }).keypress(function(e) {
+  }).keypress(function(e) {         //po napisani 3 pismen ta hodi na metodu v kontroleri, tam sa ten text dostane-vypise do cmd, ale nevrati sa spat
     pocitadlo++;
     if(pocitadlo==4){
-        var txt2=this.value;
-         console.log(txt2);
+        var txt=this.value;
+         console.log(txt);
          var param = "?txt=";
-         var params = param.concat(txt2);
+         var params = param.concat(txt);
         //console.log(params);
          var urll = "/ambrosia/detailedObject2";
          var url = urll.concat(params);
         //console.log(url);
           xmlhttp2 = new XMLHttpRequest();
           xmlhttp2.open("GET", url, true);
-          xmlhttp2.send();
+         vypis= xmlhttp2.send();
+         console.log(vypis);        
 
     }
     //console.log(pocitadlo);

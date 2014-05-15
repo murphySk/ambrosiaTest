@@ -52,7 +52,7 @@ public class DetailedObjectController {
     @RequestMapping(value = "/detailedObject2", method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
     public @ResponseBody
-    String getTags(ModelMap model, @RequestParam("txt2") String partOfTag){
+    String getTags(ModelMap model, @RequestParam("txt") String partOfTag){
         TagEntity tagEntity = new TagEntity();
        // List<TagEntity> tagEntities= tagDAO.findByExample(tagEntity, partOfTag);
         System.out.println(partOfTag+"HLADAM");
