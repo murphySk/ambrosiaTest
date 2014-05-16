@@ -7,13 +7,13 @@ $(document).ready(function(){
    var pocitadlo=0;
    var vypis;
 
-  var json = $('#tags input').on('focusout',function(){
+  $('#tags input').on('focusout',function(){
      document.getElementById("textarea").style.borderColor="#eee";
     var txt= this.value;//.replace(/[^a-zA-Z0-9\+\-\.\#]/g,'');
     if(txt) {
         if ($.inArray(txt,availableTags) == -1) {
             $(this).before('<span class="tag">'+ txt.toLowerCase() +'</span>');
-             //availableTags.push(txt) ;
+             availableTags.push(txt) ;
              this.value="";
              $.ajax({
                 url: "/ambrosia/detailedObject",
@@ -36,11 +36,11 @@ $(document).ready(function(){
          url: "/ambrosia/detailedObject2",
          data: {tag: txt},
          success: function(data, textStatus, xhr){
-            availableTags = data;
+            availableTags = availableTags.concat(data);
             console.log(availableTags);
          }
          });
-         console.log(vypis);
+
 
     }
     //console.log(pocitadlo);
