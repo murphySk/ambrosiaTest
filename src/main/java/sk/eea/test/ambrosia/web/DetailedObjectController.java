@@ -1,5 +1,6 @@
 package sk.eea.test.ambrosia.web;
 
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import sk.eea.test.ambrosia.server.entity.UserEntity;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.text.Normalizer;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,7 +33,7 @@ public class DetailedObjectController {
     @RequestMapping(value = "/detailedObject", method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
     public @ResponseBody
-    void addTag(ModelMap model, @RequestParam("txt") String name){
+    void addTag(ModelMap model, @RequestParam("tag") String name){
         String tagName = name;
         TagEntity tagEntity = new TagEntity();
         UserEntity userEntity = new UserEntity();
@@ -41,22 +43,32 @@ public class DetailedObjectController {
         tagEntity.setTag(tagName);
         System.out.println(tagName+" PRIDAVAM" );
         tagName= Normalizer.normalize(tagName, Normalizer.Form.NFD);
-        tagName=tagName.replaceAll("\\p{M}", "");
-        //System.out.println(tagName);
+        tagName = tagName.replaceAll("\\p{M}", "");
+        System.out.println(tagName);
         tagEntity.setNormalizedTag(tagName);
         tagEntity.setUser(userEntity);
         tagDAO.makePersistent(tagEntity);
-
+        System.out.println(tagDAO.findAll().size());
     }
 
     @RequestMapping(value = "/detailedObject2", method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
-    public @ResponseBody
-    String getTags(ModelMap model, @RequestParam("txt") String partOfTag){
-        TagEntity tagEntity = new TagEntity();
-       // List<TagEntity> tagEntities= tagDAO.findByExample(tagEntity, partOfTag);
-        System.out.println(partOfTag+"HLADAM");
-        return partOfTag;
+    public @ResponseBody  String[] getTags(ModelMap model, @RequestParam("tag") String partOfTag){
+        List<TagEntity> tagEntities = tagDAO.findAll();
+        List<TagEntity> finalTagEntities = new ArrayList<TagEntity>();
+        for(int i = 0; i < tagEntities.size(); i++) {
+            if (tagEntities.get(i).getTag().startsWith(partOfTag))
+                finalTagEntities.add(tagEntities.get(i));
+        }
+
+        String[] finalTagNames = new String[finalTagEntities.size()];
+
+        for(int i = 0; i < finalTagEntities.size(); i++){
+            finalTagNames[i] = finalTagEntities.get(i).getTag();
+        }
+
+        System.out.println(partOfTag +" HLADANY");
+        return finalTagNames;
     }
 
     void deleteTag(){

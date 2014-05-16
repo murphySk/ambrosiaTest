@@ -4,7 +4,7 @@
 <%@ page import="sk.eea.test.ambrosia.services.impl.HttpConnection" %>
 <%@ page import="sk.eea.test.ambrosia.server.entity.EuropeanaObjectEntity" %>
 <%@ page import="java.util.List" %>
-<%@ page import="sk.eea.test.ambrosia.services.impl.EuropeanaObjectParserImpl" %>
+    <%@ page import="sk.eea.test.ambrosia.services.impl.EuropeanaObjectParserImpl" %>
 
 
 <html>

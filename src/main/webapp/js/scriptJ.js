@@ -7,24 +7,19 @@ $(document).ready(function(){
    var pocitadlo=0;
    var vypis;
 
-  $('#tags input').on('focusout',function(){   
+  var json = $('#tags input').on('focusout',function(){
      document.getElementById("textarea").style.borderColor="#eee";
     var txt= this.value;//.replace(/[^a-zA-Z0-9\+\-\.\#]/g,'');
     if(txt) {
         if ($.inArray(txt,availableTags) == -1) {
             $(this).before('<span class="tag">'+ txt.toLowerCase() +'</span>');
-             availableTags.push(txt) ;
+             //availableTags.push(txt) ;
              this.value="";
-             console.log(txt);
-             var param = "?txt=";
-             var params = param.concat(txt);
-             console.log(params);
-             var urll = "/ambrosia/detailedObject";
-             var url = urll.concat(params);
-              console.log(url);
-               xmlhttp = new XMLHttpRequest();
-               xmlhttp.open("GET", url, true);
-               xmlhttp.send();
+             $.ajax({
+                url: "/ambrosia/detailedObject",
+                data: {tag: txt}
+             });
+
 
         }else console.log("existing tag");
       
@@ -37,16 +32,15 @@ $(document).ready(function(){
     if(pocitadlo==4){
         var txt=this.value;
          console.log(txt);
-         var param = "?txt=";
-         var params = param.concat(txt);
-        //console.log(params);
-         var urll = "/ambrosia/detailedObject2";
-         var url = urll.concat(params);
-        //console.log(url);
-          xmlhttp2 = new XMLHttpRequest();
-          xmlhttp2.open("GET", url, true);
-         vypis= xmlhttp2.send();
-         console.log(vypis);        
+         $.ajax({
+         url: "/ambrosia/detailedObject2",
+         data: {tag: txt},
+         success: function(data, textStatus, xhr){
+            availableTags = data;
+            console.log(availableTags);
+         }
+         });
+         console.log(vypis);
 
     }
     //console.log(pocitadlo);
