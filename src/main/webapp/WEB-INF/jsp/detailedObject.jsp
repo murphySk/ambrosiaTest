@@ -11,7 +11,7 @@
      	<link href="<c:url value="/css/style.css"/>" rel="stylesheet">
      	<link href="<c:url value="/css/style2.css"/>" rel="stylesheet">
      	<link href="<c:url value="/css/jquery-ui-1.10.4.css"/>" rel="stylesheet">
-       	<script src="<c:url value="/js/jquery-2.1.1.js"/>"></script>
+       	<script src="<c:url value="/js/jquery-2.1.1.min.js"/>"></script>
      	<script src="<c:url value="/js/detailedObject.js"/>"></script>
         <script src="<c:url value="/js/jquery-ui-1.10.4.js"/>"></script>
         <script src="<c:url value="/js/jquery-ui-1.10.4.min.js"/>"></script>

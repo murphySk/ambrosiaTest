@@ -53,7 +53,7 @@ public class DetailedObjectController {
 
     @RequestMapping(value = "/detailedObject2", method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
-    public @ResponseBody  String[] getTags(ModelMap model, @RequestParam("tag") String partOfTag){
+    public @ResponseBody  void getTags(ModelMap model, @RequestParam("tag") String partOfTag){
         List<TagEntity> tagEntities = tagDAO.findAll();
         List<TagEntity> finalTagEntities = new ArrayList<TagEntity>();
         for(int i = 0; i < tagEntities.size(); i++) {
@@ -65,10 +65,11 @@ public class DetailedObjectController {
 
         for(int i = 0; i < finalTagEntities.size(); i++){
             finalTagNames[i] = finalTagEntities.get(i).getTag();
+            System.out.println(finalTagNames[i] +" HLADANY");
         }
 
-        System.out.println(partOfTag +" HLADANY");
-        return finalTagNames;
+       // System.out.println(partOfTag +" HLADANY");
+        //return finalTagNames[0];
     }
 
     void deleteTag(){

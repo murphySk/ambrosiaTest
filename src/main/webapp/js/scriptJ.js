@@ -13,7 +13,7 @@ $(document).ready(function(){
     if(txt) {
         if ($.inArray(txt,availableTags) == -1) {
             $(this).before('<span class="tag">'+ txt.toLowerCase() +'</span>');
-             availableTags.push(txt) ;
+             //availableTags.push(txt) ;
              this.value="";
              $.ajax({
                 url: "/ambrosia/detailedObject",
@@ -27,18 +27,29 @@ $(document).ready(function(){
     }
     this.value="";
 
-  }).keypress(function(e) {         //po napisani 3 pismen ta hodi na metodu v kontroleri, tam sa ten text dostane-vypise do cmd, ale nevrati sa spat
+  }).keypress(function(e) {
     pocitadlo++;
+
     if(pocitadlo==4){
         var txt=this.value;
          console.log(txt);
          $.ajax({
+         type: 'GET',
          url: "/ambrosia/detailedObject2",
          data: {tag: txt},
+        error: function (xhr, status) {
+                                  alert(status);
+                              },
+
          success: function(data, textStatus, xhr){
+
             availableTags = availableTags.concat(data);
             console.log(availableTags);
          }
+         /*success: function(){
+             alert('success');
+           },*/
+
          });
 
 
