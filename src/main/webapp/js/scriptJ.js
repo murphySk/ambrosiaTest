@@ -1,8 +1,5 @@
 $(document).ready(function(){
  var availableTags = [
-      "silvika",
-      "martinko",
-      "marosko"
     ];
    var pocitadlo=0;
    var vypis;
@@ -29,7 +26,8 @@ $(document).ready(function(){
 
   }).keypress(function(e) {
     pocitadlo++;
-
+   // console.log("1");
+   // console.log(availableTags);
     if(pocitadlo==4){
         var txt=this.value;
          console.log(txt);
@@ -43,13 +41,13 @@ $(document).ready(function(){
 
          success: function(data, textStatus, xhr){
 
-            availableTags = availableTags.concat(data);
-            console.log(availableTags);
-         }
-         /*success: function(){
-             alert('success');
-           },*/
+            availableTags = data;
+            //console.log(availableTags);
 
+            $( "#autocomplete" ).autocomplete({
+                source: availableTags
+            });
+            }
          });
 
 
