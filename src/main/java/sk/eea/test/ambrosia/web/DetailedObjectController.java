@@ -77,8 +77,8 @@ public class DetailedObjectController {
             object.element("tag", finalTagEntities.get(i).getTag());
             object.element("objectId", finalTagEntities.get(i).getObjectId());
             jArray.element(object);
-            System.out.println(object + " BUUUU");
-            System.out.println(finalTagNames[i] +" HLADANY");
+          //  System.out.println(object + " BUUUU");
+          //  System.out.println(finalTagNames[i] +" HLADANY");
         }
 
 

@@ -49,15 +49,12 @@ $(document).ready(function(){
 
          success: function(data, textStatus, xhr){
              if(jQuery.isEmptyObject(data)==false){
-                 //console.log(data[0].tag);
                 for (index = 0; index < data.length; index++) {
-                //    if(index==0) availableTags=data[0].tag;
-                //    else{
+                        var id=document.getElementById("id").innerHTML;
+                        if(id==data[index].objectId) data[index].tag+=" bolo";
                         availableTags=availableTags.concat(data[index].tag);
-                 //   }
-                     console.log(data[index]);
+                        console.log(data[index]);
                    }
-               // availableTags=availableTags.concat(data[0].tag);
                 $( "#autocomplete" ).autocomplete({
                     source: availableTags
                 });
