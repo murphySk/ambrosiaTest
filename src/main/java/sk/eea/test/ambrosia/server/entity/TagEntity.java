@@ -19,9 +19,19 @@ public class TagEntity {
 
     private String normalizedTag;
 
+    private String objectId;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userId", nullable = false)
     private UserEntity user;
+
+    public String getObjectId() {
+        return objectId;
+    }
+
+    public void setObjectId(String objectId) {
+        this.objectId = objectId;
+    }
 
     public Long getTagId() {
         return tagId;

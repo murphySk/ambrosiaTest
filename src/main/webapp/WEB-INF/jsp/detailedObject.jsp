@@ -34,7 +34,7 @@
                  <h1 id="title" align="left"><c:out value="${obj.title}"/></h1>
             </c:if>
 
-
+            <p hidden id="id"><c:out value="${obj.objectId}"/></p>
 
             <div class="clear"></div>
 

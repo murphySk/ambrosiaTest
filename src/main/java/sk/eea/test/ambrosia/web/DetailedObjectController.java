@@ -1,5 +1,6 @@
 package sk.eea.test.ambrosia.web;
 
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,11 +12,10 @@ import sk.eea.test.ambrosia.server.dao.UserDAO;
 import sk.eea.test.ambrosia.server.entity.TagEntity;
 import sk.eea.test.ambrosia.server.entity.UserEntity;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
+
 
 /**
  * Created by marti_000 on 4/25/2014.
@@ -33,7 +33,7 @@ public class DetailedObjectController {
     @RequestMapping(value = "/detailedObject", method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
     public @ResponseBody
-    void addTag(ModelMap model, @RequestParam("tag") String name){
+    void addTag(ModelMap model, @RequestParam("tag") String name,@RequestParam("id2") String id2){
         String tagName = name;
         TagEntity tagEntity = new TagEntity();
         UserEntity userEntity = new UserEntity();
@@ -41,7 +41,8 @@ public class DetailedObjectController {
         userEntity.setUserName("uzivatel");
         userEntity = userDAO.makePersistent(userEntity);
         tagEntity.setTag(tagName);
-        System.out.println(tagName+" PRIDAVAM" );
+        tagEntity.setObjectId(id2);
+        System.out.println(tagName+" PRIDAVAM"+ id2 );
         tagName= Normalizer.normalize(tagName, Normalizer.Form.NFD);
         tagName = tagName.replaceAll("\\p{M}", "");
         System.out.println(tagName);
@@ -53,23 +54,36 @@ public class DetailedObjectController {
 
     @RequestMapping(value = "/detailedObject2", method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
-    public @ResponseBody  String[] getTags(ModelMap model, @RequestParam("tag") String partOfTag){
+    public @ResponseBody  JSONArray getTags(ModelMap model, @RequestParam("tag") String partOfTag){
         List<TagEntity> tagEntities = tagDAO.findAll();
         List<TagEntity> finalTagEntities = new ArrayList<TagEntity>();
+       // Gson gson = new Gson();
+        JSONArray jArray = new JSONArray();
+
+
         for(int i = 0; i < tagEntities.size(); i++) {
             if (tagEntities.get(i).getTag().startsWith(partOfTag))
                 finalTagEntities.add(tagEntities.get(i));
         }
 
         String[] finalTagNames = new String[finalTagEntities.size()];
+        String[] objectId = new String[finalTagEntities.size()];
 
         for(int i = 0; i < finalTagEntities.size(); i++){
             finalTagNames[i] = finalTagEntities.get(i).getTag();
+            objectId[i] = finalTagEntities.get(i).getObjectId();
+           // objectId[i]= "DataObject [tag=" + finalTagEntities.get(i).getTag() + ", id=" + finalTagEntities.get(i).getObjectId() + "]";
+            JSONObject object = new JSONObject();
+            object.element("tag", finalTagEntities.get(i).getTag());
+            object.element("objectId", finalTagEntities.get(i).getObjectId());
+            jArray.element(object);
+            System.out.println(object + " BUUUU");
             System.out.println(finalTagNames[i] +" HLADANY");
         }
 
-       // System.out.println(partOfTag +" HLADANY");
-        return finalTagNames;
+
+        //System.out.println(partOfTag +" HLADANY" );
+        return jArray;
     }
 
     void deleteTag(){
