@@ -1,7 +1,5 @@
 package sk.eea.test.ambrosia.server.entity;
 
-import sk.eea.test.ambrosia.server.dao.UserDAO;
-
 import javax.persistence.*;
 
 /**
@@ -19,17 +17,21 @@ public class TagEntity {
 
     private String normalizedTag;
 
-    private String objectId;
+    //private String objectId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userId", nullable = false)
     private UserEntity user;
 
-    public String getObjectId() {
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "europObjectId", nullable = false)
+    private ObjectIdEntity objectId;
+
+    public ObjectIdEntity getObjectId() {
         return objectId;
     }
 
-    public void setObjectId(String objectId) {
+    public void setObjectId(ObjectIdEntity objectId) {
         this.objectId = objectId;
     }
 

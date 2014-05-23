@@ -4,12 +4,13 @@ import junit.framework.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import sk.eea.test.ambrosia.ApplicationContextAwareTest;
+import sk.eea.test.ambrosia.server.dao.ObjectIdDAO;
 import sk.eea.test.ambrosia.server.dao.TagDAO;
 import sk.eea.test.ambrosia.server.dao.UserDAO;
+import sk.eea.test.ambrosia.server.entity.ObjectIdEntity;
 import sk.eea.test.ambrosia.server.entity.TagEntity;
 import sk.eea.test.ambrosia.server.entity.UserEntity;
 
-import javax.annotation.Resource;
 import java.text.Normalizer;
 
 /**
@@ -23,6 +24,9 @@ public class UserTagTest extends ApplicationContextAwareTest {
     @Autowired
     private TagDAO tagDAO;
 
+    @Autowired
+    private ObjectIdDAO objectIdDAO;
+
     @Test
     public void testUserInsert() {
         UserEntity userEntity = new UserEntity();
@@ -33,6 +37,8 @@ public class UserTagTest extends ApplicationContextAwareTest {
         userDAO.makePersistent(userEntity);
         Assert.assertEquals(size + 1, userDAO.findAll().size());
     }
+
+
 
     @Test
     public void testUserTagInsert() {
@@ -49,6 +55,30 @@ public class UserTagTest extends ApplicationContextAwareTest {
         tagEntity = tagDAO.makePersistent(tagEntity);
 
         Assert.assertEquals(size + 1, tagDAO.findAll().size());
+    }
+
+    @Test
+    public void testObjectIdInsert() {
+        String tagName = "tag";
+        TagEntity tagEntity = new TagEntity();
+        UserEntity userEntity = new UserEntity();
+        userEntity.setPassword("1111");
+        userEntity.setUserName("uzivatel");
+        userEntity = userDAO.makePersistent(userEntity);
+        tagEntity.setTag(tagName);
+        ObjectIdEntity objectIdEntity = new ObjectIdEntity();
+        objectIdEntity.setEuropObjectId("id");
+        objectIdEntity = objectIdDAO.makePersistent(objectIdEntity);
+        tagName= Normalizer.normalize(tagName, Normalizer.Form.NFD);
+        tagName = tagName.replaceAll("\\p{M}", "");
+        System.out.println(tagName);
+        tagEntity.setNormalizedTag(tagName);
+        tagEntity.setUser(userEntity);
+        tagEntity.setObjectId(objectIdEntity);
+        tagEntity=tagDAO.makePersistent(tagEntity);
+       // System.out.println(tagDAO.findAll().size());
+
+        Assert.assertEquals(tagEntity.getObjectId().getEuropObjectId(),"id");
     }
 
 

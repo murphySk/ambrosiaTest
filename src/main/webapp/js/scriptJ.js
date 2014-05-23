@@ -13,7 +13,7 @@ function func1(){
            dataType : 'json',
            contentType:"application/json",
           error: function (xhr, status) {
-                                    alert(status);
+                                    alert("na zaciatku je alert, ved to som predpokladala");
                                 },
 
            success: function(data, textStatus, xhr){
@@ -69,7 +69,8 @@ window.onload=func1;
          dataType : 'json',
          contentType:"application/json",
         error: function (xhr, status) {
-                                  alert(status);
+                                   alert("po 4 pismenkach");
+                                  //alert(status);
                               },
 
          success: function(data, textStatus, xhr){
