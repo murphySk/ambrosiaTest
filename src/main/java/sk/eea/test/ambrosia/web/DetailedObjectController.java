@@ -57,7 +57,6 @@ public class DetailedObjectController {
     public @ResponseBody  JSONArray getTags(ModelMap model, @RequestParam("tag") String partOfTag){
         List<TagEntity> tagEntities = tagDAO.findAll();
         List<TagEntity> finalTagEntities = new ArrayList<TagEntity>();
-       // Gson gson = new Gson();
         JSONArray jArray = new JSONArray();
 
 
@@ -66,23 +65,46 @@ public class DetailedObjectController {
                 finalTagEntities.add(tagEntities.get(i));
         }
 
-        String[] finalTagNames = new String[finalTagEntities.size()];
-        String[] objectId = new String[finalTagEntities.size()];
+
 
         for(int i = 0; i < finalTagEntities.size(); i++){
-            finalTagNames[i] = finalTagEntities.get(i).getTag();
-            objectId[i] = finalTagEntities.get(i).getObjectId();
-           // objectId[i]= "DataObject [tag=" + finalTagEntities.get(i).getTag() + ", id=" + finalTagEntities.get(i).getObjectId() + "]";
             JSONObject object = new JSONObject();
             object.element("tag", finalTagEntities.get(i).getTag());
             object.element("objectId", finalTagEntities.get(i).getObjectId());
             jArray.element(object);
-          //  System.out.println(object + " BUUUU");
-          //  System.out.println(finalTagNames[i] +" HLADANY");
+          }
+
+
+        return jArray;
+    }
+
+    @RequestMapping(value = "/detailedObject3", method = RequestMethod.GET)
+    @ResponseStatus(value = HttpStatus.OK)
+    public @ResponseBody  JSONArray getTagsForObject(ModelMap model, @RequestParam("idObject") String idObject){
+        List<TagEntity> tagEntities = tagDAO.findAll();
+        List<TagEntity> finalTagEntities = new ArrayList<TagEntity>();
+        JSONArray jArray = new JSONArray();
+        //System.out.println(idObject+" IDOBJECT!!!!!!!");
+
+        for(int i = 0; i < tagEntities.size(); i++) {
+           // System.out.println(tagEntities.get(i).getObjectId()+"  !!!!!!!!!!  "+idObject);
+            if (tagEntities.get(i).getObjectId().compareTo(idObject)==0) {
+              //  System.out.println("PRESLO");
+                finalTagEntities.add(tagEntities.get(i));
+            }
         }
 
 
-        //System.out.println(partOfTag +" HLADANY" );
+
+        for(int i = 0; i < finalTagEntities.size(); i++){
+
+            JSONObject object = new JSONObject();
+            object.element("tag", finalTagEntities.get(i).getTag());
+           // System.out.println(finalTagEntities.get(i).getTag()+"TAAAAG");
+            jArray.element(object);
+        }
+
+
         return jArray;
     }
 

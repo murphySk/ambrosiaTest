@@ -1,9 +1,34 @@
 $(document).ready(function(){
- var availableTags = [
-    ];
+   var availableTags = [];
    var pocitadlo=0;
    var vypis;
 
+function func1(){
+   // console.log("ahoooj");
+     var id=document.getElementById("id").innerHTML;
+     $.ajax({
+           type: 'GET',
+           url: "/ambrosia/detailedObject3",
+           data: {idObject: id},
+           dataType : 'json',
+           contentType:"application/json",
+          error: function (xhr, status) {
+                                    alert(status);
+                                },
+
+           success: function(data, textStatus, xhr){
+               // console.log("bubacisko");
+               if(jQuery.isEmptyObject(data)==false){
+                  for (index = 0; index < data.length; index++) {
+                          $('#tags input').before('<span class="tag">'+ data[index].tag.toLowerCase() +'</span>');
+                         // console.log(data[index].tag);
+                     }
+
+                  }
+              }
+           });
+};
+window.onload=func1;
   $('#tags input').on('focusout',function(){
 
      var id=document.getElementById("id").innerHTML;
@@ -51,7 +76,7 @@ $(document).ready(function(){
              if(jQuery.isEmptyObject(data)==false){
                 for (index = 0; index < data.length; index++) {
                         var id=document.getElementById("id").innerHTML;
-                        if(id==data[index].objectId) data[index].tag+=" bolo";
+                        if(id!=data[index].objectId)
                         availableTags=availableTags.concat(data[index].tag);
                         console.log(data[index]);
                    }
@@ -70,8 +95,9 @@ $(document).ready(function(){
        $(this).focusout();
        pocitadlo=0;
         while(availableTags.length > 0) {
-            availableTags.pop();
-        }
+                     availableTags.pop();
+                 }
+
    }
 
   });
